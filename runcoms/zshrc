@@ -11,3 +11,25 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+[ -f $HOME/.profile ] && source $HOME/.profile
+
+# Setup git autocomplete
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/git-completion.bash
+
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+source ~/bin/dotfiles/bash/aliases
+source ~/bin/dotfiles/bash/env
+source ~/bin/dotfiles/bash/config
+if [ -d ~/bin/dotfiles/private/ ]; then
+  for f in ~/bin/dotfiles/private/*; do source $f; done
+fi
+
+# unalias git
+# This is needed for hub/git autocompletion
+setopt complete_aliases
+
+DEFAULT_USER="banderson"
