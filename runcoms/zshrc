@@ -33,3 +33,23 @@ fi
 setopt complete_aliases
 
 DEFAULT_USER="banderson"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f ~/bin/google-cloud-sdk/completion.zsh.inc ] && source ~/bin/google-cloud-sdk/completion.zsh.inc
+
+[ -f ~/bin/google-cloud-sdk/path.zsh.inc ] && source ~/bin/google-cloud-sdk/path.zsh.inc
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Use ag instead of the default find command for listing candidates.
+# - The first argument to the function is the base path to start traversal
+# - Note that ag only lists files not directories
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  ag -g "" "$1"
+}
+
+[ -f ~/bin/aws_zsh_completer.sh ] && source ~/bin/aws_zsh_completer.sh
