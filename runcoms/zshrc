@@ -52,4 +52,16 @@ _fzf_compgen_path() {
   ag -g "" "$1"
 }
 
+[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
+
 [ -f ~/bin/aws_zsh_completer.sh ] && source ~/bin/aws_zsh_completer.sh
+
+if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
+  source ~/.config/exercism/exercism_completion.zsh
+fi
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+eval "$(rbenv init -)"
+
+# Added by nex: https://git.hubteam.com/HubSpot/nex
+. ~/.hubspot/shellrc
