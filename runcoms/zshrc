@@ -18,6 +18,17 @@ fi
 fpath=(~/.zsh $fpath)
 zstyle ':completion:*:*:git:*' script ~/git-completion.bash
 
+
+# # Homebrew: get autocompletions into zsh
+# # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+# if type brew &>/dev/null; then
+#   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+#   autoload -Uz compinit
+#   compinit
+# fi
+
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -41,8 +52,8 @@ DEFAULT_USER="banderson"
 [ -f ~/bin/google-cloud-sdk/path.zsh.inc ] && source ~/bin/google-cloud-sdk/path.zsh.inc
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Use ag instead of the default find command for listing candidates.
 # - The first argument to the function is the base path to start traversal
@@ -61,7 +72,14 @@ if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
 fi
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
+export DENO_DIR=$HOME/.deno
+
 eval "$(rbenv init -)"
 
 # Added by nex: https://git.hubteam.com/HubSpot/nex
 . ~/.hubspot/shellrc
+
+# Add custom functions to ~/.zfunc
+fpath=( ~/.zfunc "${fpath[@]}" )
+
+[ -f ~/.zprezto-contrib/fzf-tab/fzf-tab.plugin.zsh ] && source ~/.zprezto-contrib/fzf-tab/fzf-tab.plugin.zsh
