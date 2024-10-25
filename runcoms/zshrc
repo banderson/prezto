@@ -75,15 +75,8 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 export DENO_DIR=$HOME/.deno
 
-eval "$(rbenv init -)"
-
-# Added by nex: https://git.hubteam.com/HubSpot/nex
-. ~/.hubspot/shellrc
-
 # Add custom functions to ~/.zfunc
 fpath=( ~/.zfunc "${fpath[@]}" )
-
-eval "$(_SQLITE_UTILS_COMPLETE=zsh_source sqlite-utils)"
 
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit
@@ -91,3 +84,10 @@ compinit -u
 
 
 [ -f ~/.zprezto-contrib/fzf-tab/fzf-tab.plugin.zsh ] && source ~/.zprezto-contrib/fzf-tab/fzf-tab.plugin.zsh
+
+eval "$(_SQLITE_UTILS_COMPLETE=zsh_source sqlite-utils)"
+
+# =============================================================
+
+# Added by nex: https://git.hubteam.com/HubSpot/nex
+. ~/.hubspot/shellrc
