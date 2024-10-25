@@ -51,9 +51,10 @@ DEFAULT_USER="banderson"
 
 [ -f ~/bin/google-cloud-sdk/path.zsh.inc ] && source ~/bin/google-cloud-sdk/path.zsh.inc
 
+
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Use ag instead of the default find command for listing candidates.
 # - The first argument to the function is the base path to start traversal
@@ -81,5 +82,12 @@ eval "$(rbenv init -)"
 
 # Add custom functions to ~/.zfunc
 fpath=( ~/.zfunc "${fpath[@]}" )
+
+eval "$(_SQLITE_UTILS_COMPLETE=zsh_source sqlite-utils)"
+
+fpath=(~/.zsh $fpath)
+autoload -Uz compinit
+compinit -u
+
 
 [ -f ~/.zprezto-contrib/fzf-tab/fzf-tab.plugin.zsh ] && source ~/.zprezto-contrib/fzf-tab/fzf-tab.plugin.zsh
