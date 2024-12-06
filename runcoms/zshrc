@@ -80,7 +80,10 @@ if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
 fi
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
+# === DENO ===
 export DENO_DIR=$HOME/.deno
+# https://docs.deno.com/runtime/reference/env_variables/#special-environment-variables
+export DENO_TLS_CA_STORE=system
 
 # Add custom functions to ~/.zfunc
 fpath=( ~/.zfunc "${fpath[@]}" )
